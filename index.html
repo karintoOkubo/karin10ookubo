@@ -9,14 +9,12 @@
         body { background: var(--bg); color: var(--text); font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow-x: hidden; padding: 20px 0; }
         #game-box { width: 92%; max-width: 480px; background: #1a1a2e; padding: 25px; border: 4px solid var(--primary); text-align: center; box-shadow: 10px 10px 0px #000; position: relative; }
         
-        /* 演出用 */
+        /* 演出用：ホワイトアウト */
+        #white-out { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: none; opacity: 0; transition: opacity 0.8s; }
+        
         .goddess-content { opacity: 0; display: none; }
         .goddess-visible { opacity: 1 !important; display: block !important; animation: fadeIn 1.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        #accident-scene { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: none; align-items: center; justify-content: center; }
-        #truck { position: absolute; font-size: 8rem; right: -250px; }
-        #accident-txt { color: #000; font-size: 2rem; font-weight: bold; }
 
         .logo-img { width: 100%; max-width: 320px; margin-bottom: 25px; }
         .goddess-img { width: 100%; height: auto; border: 2px solid #fff; background: #333; display: block; margin: 0 auto; border-radius: 4px; }
@@ -38,10 +36,7 @@
 </head>
 <body>
 
-<div id="accident-scene">
-    <div id="truck">🚚💨</div>
-    <div id="accident-txt">あ！危ない！！</div>
-</div>
+<div id="white-out"></div>
 
 <div id="game-box">
     <div id="title-screen">
@@ -58,7 +53,7 @@
 
     <div id="novel-screen" class="hidden">
         <div id="novel-text" style="min-height:150px; display:flex; align-items:center; justify-content:center; line-height:1.8;"></div>
-        <button onclick="nextNovel()" style="width:auto; padding:10px 40px; margin-top:20px; text-align:center;">次へ</button>
+        <button onclick="nextNovel()" id="btn-next" style="width:auto; padding:10px 40px; margin-top:20px; text-align:center;">次へ</button>
     </div>
 
     <div id="goddess-wrap" class="goddess-content">
@@ -187,48 +182,31 @@
             "ごく普通の、どこにでもある平凡な毎日を送る男だ。",
             "だが、ふと見上げた夜空に、見たこともない色の星が流れた気がした。",
             "「……ん？」",
-            "背後から、不自然なほどの熱風と、轟音が迫る。",
-            "振り返ると、そこには光り輝くトラックが――"
+            "背後から、不自然なほどの熱風と、凄まじい轟音が迫る。",
+            "振り返ると、そこには視界を埋め尽くすほどの光が――"
         ];
         if (novelIndex < scenario.length) {
             document.getElementById('novel-text').innerText = scenario[novelIndex];
             novelIndex++;
         } else {
-            startAccident();
+            transitionToGoddess();
         }
     }
     function nextNovel() { showNextSentence(); }
 
-    function startAccident() {
-        document.getElementById('novel-screen').classList.add('hidden');
-        const scene = document.getElementById('accident-scene');
-        const truck = document.getElementById('truck');
-        const txt = document.getElementById('accident-txt');
-        scene.style.display = 'flex';
-        let pos = -250;
-        const drive = setInterval(() => {
-            pos += 15;
-            truck.style.right = pos + 'px';
-            if (pos > window.innerWidth / 2 - 50) {
-                txt.innerText = "ガシャーーーーン！！";
-                scene.style.background = "red";
-            }
-            if (pos > window.innerWidth + 300) { clearInterval(drive); }
-        }, 10);
-
+    function transitionToGoddess() {
+        const whiteOut = document.getElementById('white-out');
+        whiteOut.style.display = 'block';
         setTimeout(() => {
-            scene.style.background = "#fff";
-            txt.innerText = "";
-            truck.style.display = "none";
+            whiteOut.style.opacity = '1';
             setTimeout(() => {
-                scene.style.opacity = "0";
-                setTimeout(() => {
-                    scene.style.display = 'none';
-                    goddessWrap.classList.add('goddess-visible');
-                    commentBox.innerText = `ひどい事故だったわね……。というわけで${userName}。アンタには転生してもらうわ。ただ、地球で流行っている転生モノ？のせいで連日転生させてて今M男枠しかないから。じゃ、色々きかせて？`;
-                }, 800);
-            }, 1000);
-        }, 2800);
+                document.getElementById('novel-screen').classList.add('hidden');
+                goddessWrap.classList.add('goddess-visible');
+                commentBox.innerText = `ひどい事故だったわね……。というわけで${userName}。アンタには転生してもらうわ。ただ、地球で流行っている転生モノ？のせいで連日転生させてて今M男枠しかないから。じゃ、色々きかせて？`;
+                whiteOut.style.opacity = '0';
+                setTimeout(() => { whiteOut.style.display = 'none'; }, 800);
+            }, 800);
+        }, 50);
     }
 
     function startQuiz() {
@@ -276,8 +254,7 @@
             <div style="margin-top:10px; padding:8px; background:#222; border-left:4px solid #f00; color:#ff8888;">♥おすすめ：${job.o}</div>
         `;
         
-        // GAS送信（URLは自分のものに書き換えてください）
-        const gasUrl = 'ここにURLを貼る';
+        const gasUrl = 'ここにデプロイしたURLを貼る';
         fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ name: userName, job: job.n }) });
 
         document.getElementById('btn-share').onclick = () => {
