@@ -137,10 +137,13 @@
         // ★チートキーワード判定
         if (userName.includes("全知全能のドM")) {
             isCheat = true;
+            // キーワード一致時はノベル画面を表示せず、即女神へ
+            transitionToGoddess();
+        } else {
+            document.getElementById('name-input-screen').classList.add('hidden');
+            document.getElementById('novel-screen').classList.remove('hidden');
+            showNextSentence();
         }
-        document.getElementById('name-input-screen').classList.add('hidden');
-        document.getElementById('novel-screen').classList.remove('hidden');
-        showNextSentence();
     }
 
     function showNextSentence() {
@@ -164,6 +167,7 @@
     function transitionToGoddess() {
         const whiteOut = document.getElementById('white-out');
         const novelScreen = document.getElementById('novel-screen');
+        const nameScreen = document.getElementById('name-input-screen');
         const goddessWrap = document.getElementById('goddess-wrap');
         const commentBox = document.getElementById('goddess-comment');
 
@@ -171,10 +175,11 @@
         setTimeout(() => { whiteOut.style.opacity = '1'; }, 20);
 
         setTimeout(() => {
+            // ノベル画面と名前入力画面の両方を確実に隠す
             novelScreen.classList.add('hidden');
+            nameScreen.classList.add('hidden');
             goddessWrap.classList.add('goddess-visible');
             
-            // 女神のセリフ条件分岐
             if (isCheat) {
                 commentBox.innerText = `！？！？さてはアンタ、いえ、貴方様は全知全能のドM様・・・！！すぐ全職業を解放させていただきます！！！ さぁ、お好みの「悦びの器」をお選びくださいませ！`;
             } else {
@@ -186,7 +191,7 @@
                 whiteOut.style.opacity = '0';
                 setTimeout(() => { whiteOut.style.display = 'none'; }, 800);
             }, 500);
-        }, 1000);
+        }, 800);
     }
 
     function handleGoddessClick() {
@@ -245,10 +250,6 @@
         
         if (isCheat) {
             commentBox.innerText = `全知全能のドM様にとって、この「${job.n}」の運命など、ほんの余興に過ぎないのでしょうね……。どうぞ、存分にお楽しみください。`;
-        } else if (maxJob === 'fenrir') {
-            commentBox.innerText = "「ちょ、ちょっと待って！ 伝説のフェンリルを引き当てるなんて……。アンタ、とんでもない素質を隠してたわね……」";
-        } else if (maxJob === 'sage') {
-            commentBox.innerText = "「賢者……？ いえ、これ『こじらせドM賢者』じゃない！ 女勇者も困惑するレベルのこだわりよ……」";
         } else {
             commentBox.innerText = `鑑定完了！アンタの転生先は、この「${job.n}」よ。存分に可愛がってもらいなさい。`;
         }
