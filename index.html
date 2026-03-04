@@ -189,24 +189,24 @@
     }
     function nextNovel() { showNextSentence(); }
 
+    // --- 修正箇所：女神対面時のアクション ---
     function transitionToGoddess() {
         const whiteOut = document.getElementById('white-out');
         const novelScreen = document.getElementById('novel-screen');
         const goddessWrap = document.getElementById('goddess-wrap');
         const commentBox = document.getElementById('goddess-comment');
 
-        // 1. 強制的に表示を予約
         whiteOut.style.display = 'block';
         setTimeout(() => { whiteOut.style.opacity = '1'; }, 20);
 
-        // 2. 1秒後に画面を確実に切り替える
         setTimeout(() => {
             novelScreen.classList.add('hidden');
             goddessWrap.classList.add('goddess-visible');
-            commentBox.innerText = `ひどい事故だったわね……。というわけで${userName}。アンタには転生してもらうわ。今M男枠しか空いてないから。じゃ、色々きかせて？`;
+            
+            // ★セリフをご指定の内容に書き換え
+            commentBox.innerText = `ひどい事故だったわね、${userName}。ここにいるということはアンタはMの素質を見抜かれて、転生者に選ばれたのね。最近地球で人気な異世界転生モノ？のせいで転生者が絶えないからM男に転生してもらうわ。さぁ診断を始めましょう。`;
             commentBox.classList.remove('hidden');
 
-            // 3. 視界を戻す
             setTimeout(() => {
                 whiteOut.style.opacity = '0';
                 setTimeout(() => { whiteOut.style.display = 'none'; }, 800);
@@ -269,3 +269,4 @@
 </script>
 </body>
 </html>
+
