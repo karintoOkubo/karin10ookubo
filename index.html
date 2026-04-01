@@ -7,6 +7,7 @@
     <style>
         :root { --primary: #9d50bb; --bg: #0f0c29; --text: #ffffff; --gold: #ffeb3b; }
         
+        /* 全体の横スクロールを完全にロック */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -71,6 +72,9 @@
         .cheat-badge { background: linear-gradient(45deg, #ff0000, #ffeb3b); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-right: 5px; box-shadow: 0 0 5px var(--gold); }
         
         footer { margin-top: 30px; color: #666; font-size: 0.75rem; text-align: center; width: 100%; }
+        
+        /* 電話ボタン専用スタイル */
+        .btn-call { background: #28a745 !important; color: #fff !important; text-align: center !important; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -117,6 +121,9 @@
         <div style="font-weight:bold; font-size:0.9rem;">鑑定結果：<span id="res-name-label"></span>のジョブは…</div>
         <div class="job-res" id="job-name"></div>
         <div class="stats" id="detail"></div>
+        
+        <button class="btn-call" onclick="location.href='tel:03-5338-2227'">📞 お店に電話して予約する</button>
+
         <button id="btn-share" style="background:#000; color:#fff; margin-top:15px; text-align:center;">結果をXで報告</button>
         <button onclick="location.reload()" style="margin-top:10px; background:#999; text-align:center;">タイトルへ</button>
     </div>
@@ -156,7 +163,7 @@
         { q: "戦いの後、彼女の靴が泥で汚れています。どうしますか？", a: [{t: "スライムになり核(コア)を刺激されるのを待つ", j: "slime"}, {t: "床として横たわり汚れを落とさせる", j: "floor"}, {t: "「私が磨きます」と薬液で洗浄する", j: "alchemist"}, {t: "犬のように這いつくばり許可を待つ", j: "dog"}]},
         { q: "あなたが「道具」として扱われる際、最も快感なのは？", a: [{t: "「代わりはいくらでもいる」と言われる", j: "slime"}, {t: "「便利なゴミ箱」と言われる", j: "shield"}, {t: "「壊れるまで使ってやる」と言われる", j: "slave"}, {t: "何時間も無言で放置される瞬間", j: "floor"}]},
         { q: "女勇者の魔力が枯渇しました。救済のために捧げるのは？", a: [{t: "童貞の魔力をすべて吸い取らせる", j: "mage"}, {t: "自分の生命力すら魔力に変える", j: "slave"}, {t: "黙って足首を掴み魔力を流し込む", j: "knight"}, {t: "魔力回復薬を自作し、副作用を受ける", j: "alchemist"}]},
-        { q: "最後に確認します。あなたが異世界で「本当に」なりたいものは？", a: [{t: "完璧な「物（オブジェ）」", j: "floor"}, {t: "命令という鎖に縛られる「魂」", j: "slave"}, {t: "頑丈な「ゴミ箱」", j: "shield"}, {t: "足元を清潔に保ち付き従う「獣」", j: "dog"}]}
+        { q: "最後に確認します。あなたが異世界で「本当に」なりなりものは？", a: [{t: "完璧な「物（オブジェ）」", j: "floor"}, {t: "命令という鎖に縛られる「魂」", j: "slave"}, {t: "頑丈な「ゴミ箱」", j: "shield"}, {t: "足元を清潔に保ち付き従う「獣」", j: "dog"}]}
     ];
 
     function goToNameInput() {
