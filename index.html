@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>M男転生～女神にM男診断されて女勇者にイかされる～</title>
+    <title>M男転生 ～全知全能のドM、異世界で女勇者の「専用装備」になる～</title>
     <style>
         :root { --primary: #9d50bb; --bg: #0f0c29; --text: #ffffff; --gold: #ffeb3b; }
         
-        /* 全体の横スクロールを完全にロック */
         html, body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
             margin: 0;
             padding: 0;
-            /* ダブルタップズーム、ブラウザ独自のジェスチャーを抑制 */
             touch-action: pan-y; 
         }
 
@@ -25,7 +23,6 @@
             padding: 20px 0;
         }
 
-        /* ゲーム画面の外枠 */
         #game-box { 
             width: 90%; 
             max-width: 480px; 
@@ -35,7 +32,7 @@
             text-align: center; 
             box-shadow: 10px 10px 0px #000; 
             position: relative;
-            box-sizing: border-box; /* パディングによる幅の突き抜けを防止 */
+            box-sizing: border-box;
         }
         
         #white-out { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: none; opacity: 0; transition: opacity 0.8s; pointer-events: none; }
@@ -83,7 +80,7 @@
 <div id="game-box">
     <div id="title-screen">
         <img src="logo.png" class="logo-img" alt="M男転生 ロゴ">
-        <p style="color: #aaa; font-size: 0.8rem;">～女神にM男診断されて女勇者にイかされる～</p>
+        <p style="color: #aaa; font-size: 0.8rem;">～全知全能のドM、異世界で女勇者の「専用装備」になる～</p>
         <button onclick="goToNameInput()" style="text-align:center;">異世界へ転生する</button>
     </div>
 
@@ -139,8 +136,6 @@
     let canClickBubble = true;
 
     const jobs = {
-        fenrir: { n: "高貴なる処刑犬（フェンリル）", s: "神話級の従順、黄金の鎖", i: "魔力封じの枷", o: "全身拘束、遠吠え、マズル", c: "伝説の幻獣なのに、中身は普通の犬よりずっと高潔で、それでいて救いようのないドMだなんて……ギャップが凄まじいわね。" },
-        sage: { n: "深淵の探求賢者（セージ）", s: "絶頂魔法、自己犠牲儀式", i: "特注の緊縛ロープ", o: "放置、目隠し、徹底した責め", c: "魔法の才能が突き抜けてると思ったら、こだわりが強すぎる「こじらせドM」じゃない！理屈を並べて理想のプレイを要求するなんて、一番厄介ね。" },
         alchemist: { n: "実験体錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "女勇者の作る怪しいポーションを喜んで飲み干す姿……立派な変態ね。" },
         dog: { n: "勇者のペット（犬）", s: "お手・おかわり", i: "トゲ付きの首輪", o: "Mセット", c: "人間をやめて犬として生きる道を選んだのね。四つん這いで這いつくばりなさい！" },
         floor: { n: "高機能な床", s: "踏まれ心地の追求", i: "高級なワックス", o: "踏みつけ", c: "もはや生物ですらないわ。女勇者に踏まれるためだけの「床」がお似合いよ。" },
@@ -152,16 +147,16 @@
     };
 
     const qs = [
-        { q: "女勇者に「今日から人間禁止。犬になりなさい」と言われたら？", a: [{t: "「ワン！」と吠えて尻尾を振る", j: "dog"}, {t: "「貴女には屈しましょう」と跪く", j: "fenrir"}, {t: "屈辱に震えながら靴を見つめる", j: "knight"}, {t: "「管理プロセスを教えてください」と聞く", j: "sage"}]},
-        { q: "パーティの休憩中、女勇者が椅子に座ろうとしています。あなたの行動は？", a: [{t: "無言で床になる", j: "floor"}, {t: "「ここが座り心地が良いです」と椅子になる", j: "sage"}, {t: "スライムになり靴の汚れを舐める", j: "slime"}, {t: "盾を敷き、自分もろとも踏まれる", j: "shield"}]},
+        { q: "女勇者に「今日から人間禁止。犬になりなさい」と言われたら？", a: [{t: "「ワン！」と吠えて尻尾を振る", j: "dog"}, {t: "「仰せのままに…」と首を差し出す", j: "slave"}, {t: "屈辱に震えながら靴を見つめる", j: "knight"}, {t: "無言で靴を舐め始める", j: "slime"}]},
+        { q: "パーティの休憩中、女勇者が椅子に座ろうとしています。あなたの行動は？", a: [{t: "無言で床になる", j: "floor"}, {t: "「私の背中を椅子に」と四つん這いになる", j: "dog"}, {t: "スライムになり靴の汚れを舐める", j: "slime"}, {t: "盾を敷き、自分もろとも踏まれる", j: "shield"}]},
         { q: "女勇者が「新しい毒薬の実験台が必要だ」と言い出しました。", a: [{t: "「もっと強いのを！」と飲み干す", j: "alchemist"}, {t: "「これも騎士の修行……」と飲む", j: "knight"}, {t: "身体が溶けて彼女の足元に広がる", j: "slime"}, {t: "鎖で繋がれたまま拒否せず飲む", j: "slave"}]},
-        { q: "敵の強力な魔法が放たれました。あなたの「理想」の守り方は？", a: [{t: "鉄板のように硬直して衝撃をゼロにする", j: "shield"}, {t: "尊厳を吸い取られながら障壁を張る", j: "mage"}, {t: "守護獣として蹂躙される", j: "fenrir"}, {t: "最も苦痛が長く続く受け方を提案する", j: "sage"}]},
-        { q: "街の人々に、彼女の「所有物」として紹介された時の気分は？", a: [{t: "「自分はただの番号だ」と復唱する", j: "slave"}, {t: "首輪を引かれて悦に浸る", j: "dog"}, {t: "部下に目撃され、絶望しながら従う", j: "knight"}, {t: "「この美学は誰にも分からん」と悦に入る", j: "sage"}]},
-        { q: "女勇者に一生外れない「鉄枷（てつかせ）」をはめられることに。", a: [{t: "「重い……最高だ……」と涙を流す", j: "slave"}, {t: "「繋ぎ止めるとは素晴らしい力だ」と言う", j: "fenrir"}, {t: "より食い込む方法を自ら進言する", j: "sage"}, {t: "枷をはめられたまま床として機能する", j: "floor"}]},
-        { q: "戦いの後、彼女の靴が泥で汚れています。どうしますか？", a: [{t: "スライムになり核(コア)を刺激されるのを待つ", j: "slime"}, {t: "床として横たわり汚れを落とさせる", j: "floor"}, {t: "「私の舌で拭うのが最適です」と主張する", j: "sage"}, {t: "犬のように這いつくばり許可を待つ", j: "dog"}]},
-        { q: "あなたが「道具」として扱われる際、最も快感なのは？", a: [{t: "「代わりはいくらでもいる」と言われる", j: "slime"}, {t: "「私にしか使えない道具だ」と言われる", j: "fenrir"}, {t: "機能的に使われ、理屈にかなった瞬間", j: "sage"}, {t: "何時間も無言で拘束される瞬間", j: "shield"}]},
-        { q: "女勇者の魔力が枯渇しました。救済のために捧げるのは？", a: [{t: "童貞の魔力をすべて吸い取らせる", j: "mage"}, {t: "「この比率で抽出を」と計算して捧げる", j: "sage"}, {t: "黙って足首を掴み生命力を流し込む", j: "fenrir"}, {t: "魔力回復薬を自作し、副作用を受ける", j: "alchemist"}]},
-        { q: "最後に確認します。あなたが異世界で「本当に」なりたいものは？", a: [{t: "完璧な「物（オブジェ）」", j: "floor"}, {t: "命令という鎖に縛られる「魂」", j: "fenrir"}, {t: "頑丈な「ゴミ箱」", j: "shield"}, {t: "足元を清潔に保ち付き従う「獣」", j: "dog"}]}
+        { q: "敵の強力な魔法が放たれました。あなたの「理想」の守り方は？", a: [{t: "鉄板のように硬直して衝撃をゼロにする", j: "shield"}, {t: "尊厳を吸い取られながら障壁を張る", j: "mage"}, {t: "盾になって踏みつけられる", j: "floor"}, {t: "彼女の前に跪いて直に受ける", j: "slave"}]},
+        { q: "街の人々に、彼女の「所有物」として紹介された時の気分は？", a: [{t: "「自分はただの番号だ」と復唱する", j: "slave"}, {t: "首輪を引かれて悦に浸る", j: "dog"}, {t: "部下に目撃され、絶望しながら従う", j: "knight"}, {t: "自慢の「魔力タンク」として胸を張る", j: "mage"}]},
+        { q: "女勇者に一生外れない「鉄枷（てつかせ）」をはめられることに。", a: [{t: "「重い……最高だ……」と涙を流す", j: "slave"}, {t: "「これでずっと一緒ですね」と喜ぶ", j: "dog"}, {t: "より食い込むまで締め付けられるのを待つ", j: "shield"}, {t: "枷をはめられたまま床として機能する", j: "floor"}]},
+        { q: "戦いの後、彼女の靴が泥で汚れています。どうしますか？", a: [{t: "スライムになり核(コア)を刺激されるのを待つ", j: "slime"}, {t: "床として横たわり汚れを落とさせる", j: "floor"}, {t: "「私が磨きます」と薬液で洗浄する", j: "alchemist"}, {t: "犬のように這いつくばり許可を待つ", j: "dog"}]},
+        { q: "あなたが「道具」として扱われる際、最も快感なのは？", a: [{t: "「代わりはいくらでもいる」と言われる", j: "slime"}, {t: "「便利なゴミ箱」と言われる", j: "shield"}, {t: "「壊れるまで使ってやる」と言われる", j: "slave"}, {t: "何時間も無言で放置される瞬間", j: "floor"}]},
+        { q: "女勇者の魔力が枯渇しました。救済のために捧げるのは？", a: [{t: "童貞の魔力をすべて吸い取らせる", j: "mage"}, {t: "自分の生命力すら魔力に変える", j: "slave"}, {t: "黙って足首を掴み魔力を流し込む", j: "knight"}, {t: "魔力回復薬を自作し、副作用を受ける", j: "alchemist"}]},
+        { q: "最後に確認します。あなたが異世界で「本当に」なりたいものは？", a: [{t: "完璧な「物（オブジェ）」", j: "floor"}, {t: "命令という鎖に縛られる「魂」", j: "slave"}, {t: "頑丈な「ゴミ箱」", j: "shield"}, {t: "足元を清潔に保ち付き従う「獣」", j: "dog"}]}
     ];
 
     function goToNameInput() {
@@ -210,7 +205,7 @@
             if (isCheat) {
                 commentBox.innerText = `！？！？さてはアンタ、いえ、貴方様は全知全能のドM様・・・！！すぐ全職業を解放させていただきます！！！`;
             } else {
-                commentBox.innerText = `ひどい事故だったわね、${userName}。アンタはMの素質を見抜かれて転生者に選ばれたの。診断を始めましょう。`;
+                commentBox.innerText = `アンタはMの素質を見抜かれて転生者に選ばれたの。診断を始めましょう。`;
             }
             commentBox.classList.remove('hidden');
 
@@ -278,11 +273,7 @@
         document.getElementById('res-name-label').innerHTML = (isCheat ? '<span class="cheat-badge">全知全能のドM</span>' : '') + userName;
         document.getElementById('job-name').innerText = job.n;
         
-        if (isCheat) {
-            commentBox.innerText = `全知全能のドM様にとって、この「${job.n}」の運命など、ほんの余興に過ぎないのでしょうね……。`;
-        } else {
-            commentBox.innerText = `鑑定完了！アンタの転生先は、この「${job.n}」よ。存分に可愛がってもらいなさい。`;
-        }
+        commentBox.innerText = isCheat ? `全知全能のドM様にとって、この「${job.n}」の運命など、ほんの余興に過ぎないのでしょうね……。` : `鑑定完了！アンタの転生先は「${job.n}」よ。`;
         commentBox.classList.remove('hidden');
 
         document.getElementById('detail').innerHTML = `
@@ -292,8 +283,9 @@
         `;
         
         document.getElementById('btn-share').onclick = () => {
+            const pureUrl = window.location.origin + window.location.pathname;
             const text = encodeURIComponent(`【M男転生診断】\n私の転生ジョブは「${job.n}」！\n#M男転生診断 #異世界転生`);
-            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(pureUrl)}`, '_blank');
         };
     }
 </script>
