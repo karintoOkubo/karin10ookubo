@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>M男転生 ～女神様、M男枠しか空いてないって本当ですか？～</title>
+    <title>M男転生 ～全知全能のドM、異世界で女勇者の「専用装備」になる～</title>
     <style>
         :root { --primary: #9d50bb; --bg: #0f0c29; --text: #ffffff; --gold: #ffeb3b; }
         
@@ -73,7 +73,6 @@
         footer { margin-top: 30px; color: #666; font-size: 0.75rem; text-align: center; width: 100%; }
         
         .btn-call { background: #28a745 !important; color: #fff !important; text-align: center !important; margin-top: 15px; }
-        /* チート用戻るボタン */
         .btn-back-cheat { background: #555 !important; color: #fff !important; text-align: center !important; margin-top: 10px; font-size: 0.8rem; padding: 10px; }
     </style>
 </head>
@@ -145,7 +144,7 @@
     let canClickBubble = true;
 
     const jobs = {
-        alchemist: { n: "実験体錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "女勇者の作る怪しいポーションを喜んで飲み干す姿……立派な変態ね。" },
+        alchemist: { n: "実験体錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "私利私欲のために錬金し、それを全て女勇者に貢ぐダメ人間ね。アンタなんか勇者に尽くして破産してしまえばいいわ！" },
         dog: { n: "勇者のペット（犬）", s: "お手・おかわり", i: "トゲ付きの首輪", o: "Mセット", c: "人間をやめて犬として生きる道を選んだのね。四つん這いで這いつくばりなさい！" },
         floor: { n: "高機能な床", s: "踏まれ心地の追求", i: "高級なワックス", o: "踏みつけ", c: "もはや生物ですらないわ。女勇者に踏まれるためだけの「床」がお似合いよ。" },
         knight: { n: "屈辱の騎士", s: "プライド崩壊", i: "ボロボロの家紋旗", o: "顔面騎乗", c: "高潔な騎士が女勇者に完敗して跪く……そのギャップがたまらないんでしょ？" },
@@ -268,12 +267,11 @@
         });
     }
 
-    // チートモード用：結果画面から職業選択へ戻る
     function backToCheatMenu() {
         document.getElementById('result').classList.add('hidden');
-        document.getElementById('goddess-comment').classList.add('hidden'); // 女神セリフを一時隠す
+        document.getElementById('goddess-comment').classList.add('hidden'); 
         document.getElementById('cheat-menu').classList.remove('hidden');
-        canClickBubble = true; // クリック禁止を解除
+        canClickBubble = true; 
         document.getElementById('goddess-comment').classList.remove('no-click');
     }
 
@@ -291,7 +289,6 @@
         document.getElementById('res-name-label').innerHTML = (isCheat ? '<span class="cheat-badge">全知全能のドM</span>' : '') + userName;
         document.getElementById('job-name').innerText = job.n;
         
-        // チート時は戻るボタンを表示
         if (isCheat) {
             document.getElementById('btn-back-cheat').classList.remove('hidden');
             commentBox.innerText = `全知全能のドM様にとって、この「${job.n}」の運命など、ほんの余興に過ぎないのでしょうね……。`;
