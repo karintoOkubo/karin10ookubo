@@ -154,6 +154,9 @@
     let novelIndex = 0;
     let isCheat = false;
     let canClickBubble = true;
+    
+    // ★GASのURLをここにセット
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyDd2vLNDcfLXk6Dz4feqk0dA1rx7v3rFK4L-2mlVFs_GYVZ-VNrK3P3wglInjG1GE-6Q/exec';
 
     const jobs = {
         alchemist: { n: "貢ぎ変態錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "私利私欲のために錬金し、それを全て女勇者に貢ぐダメ人間ね。アンタなんか勇者に尽くして破産してしまえばいいわ！" },
@@ -287,6 +290,18 @@
         document.getElementById('goddess-comment').classList.remove('no-click');
     }
 
+    // ★データを送信する関数
+    function sendToSheet(name, job) {
+        if(!scriptURL) return;
+        // 診断結果が出た瞬間にバックグラウンドで送信
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // CORSエラー回避
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `name=${encodeURIComponent(name)}&job=${encodeURIComponent(job)}`
+        }).catch(err => console.error("Sheet Sync Error:", err));
+    }
+
     function showResult(cheatKey = null) {
         canClickBubble = false; 
         document.getElementById('goddess-comment').classList.add('no-click');
@@ -297,6 +312,9 @@
         const commentBox = document.getElementById('goddess-comment');
         let maxJob = cheatKey || Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
         const job = jobs[maxJob];
+        
+        // ★スプレッドシートへ送信実行
+        sendToSheet(userName, job.n);
         
         document.getElementById('res-name-label').innerHTML = (isCheat ? '<span class="cheat-badge">全知全能のドM</span>' : '') + userName;
         document.getElementById('job-name').innerText = job.n;
