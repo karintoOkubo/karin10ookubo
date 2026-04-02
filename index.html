@@ -23,10 +23,12 @@
             padding: 20px 0;
         }
 
+        /* ★ここを修正：ロゴを見やすくするため、ボックス内を白にする */
         #game-box { 
             width: 90%; 
             max-width: 480px; 
-            background: #1a1a2e; 
+            background: #ffffff; /* 濃い紺色から白に変更 */
+            color: #000000;      /* ボックス内の基本文字色を黒に */
             padding: 25px; 
             border: 4px solid var(--primary); 
             text-align: center; 
@@ -42,20 +44,21 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .logo-img { width: 100%; max-width: 320px; margin-bottom: 25px; height: auto; }
-        .goddess-img { width: 100%; height: auto; border: 2px solid #fff; background: #333; display: block; margin: 0 auto; border-radius: 4px; }
         
-        .msg-bubble { background: #fff; color: #000; padding: 20px; border-radius: 12px; margin-top: 25px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem; line-height: 1.6; position: relative; cursor: pointer; border: 3px solid var(--primary); text-align: left; box-sizing: border-box; }
+        /* ★女神画像の下の吹き出し：白背景の中で白だと見えないので調整 */
+        .msg-bubble { background: #f0f0f0; color: #000; padding: 20px; border-radius: 12px; margin-top: 25px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem; line-height: 1.6; position: relative; cursor: pointer; border: 3px solid var(--primary); text-align: left; box-sizing: border-box; }
         .msg-bubble::after { content: "▼ CLICK"; position: absolute; bottom: 5px; right: 15px; font-size: 0.6rem; color: #9d50bb; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
         .msg-bubble.no-click { cursor: default; }
         .msg-bubble.no-click::after { display: none; }
 
-        #user-name { padding: 12px; width: 100%; max-width: 300px; margin-bottom: 20px; border-radius: 5px; border: 2px solid var(--primary); text-align: center; font-size: 1rem; background: #000; color: #fff; box-sizing: border-box; }
+        #user-name { padding: 12px; width: 100%; max-width: 300px; margin-bottom: 20px; border-radius: 5px; border: 2px solid var(--primary); text-align: center; font-size: 1rem; background: #fff; color: #000; box-sizing: border-box; }
         .choices { display: grid; gap: 10px; width: 100%; }
 
+        /* ボタン：白背景に合わせてデザインを調整 */
         button { 
-            background: #eee; border: none; padding: 15px; font-weight: bold; cursor: pointer; box-shadow: 4px 4px 0px #666; font-size: 0.95rem; color: #000; transition: 0.1s; width: 100%; text-align: left; -webkit-tap-highlight-color: transparent; box-sizing: border-box;
+            background: #eee; border: 2px solid #ccc; padding: 15px; font-weight: bold; cursor: pointer; box-shadow: 4px 4px 0px #666; font-size: 0.95rem; color: #000; transition: 0.1s; width: 100%; text-align: left; -webkit-tap-highlight-color: transparent; box-sizing: border-box;
             touch-action: manipulation;
         }
 
@@ -66,11 +69,16 @@
         button:active { background: var(--gold) !important; transform: translate(2px, 2px); box-shadow: 2px 2px 0px #666; }
 
         .hidden { display: none !important; }
-        .job-res { font-size: 1.6rem; color: var(--gold); text-shadow: 2px 2px #000; margin: 10px 0; font-weight: bold; word-wrap: break-word; }
-        .stats { text-align: left; background: #000; padding: 15px; border: 1px dashed var(--gold); font-size: 0.85rem; line-height: 1.6; box-sizing: border-box; }
+        
+        /* 職業結果名：白背景に合わせて影を薄く */
+        .job-res { font-size: 1.6rem; color: var(--primary); text-shadow: 1px 1px #ccc; margin: 10px 0; font-weight: bold; word-wrap: break-word; }
+        
+        /* ステータス：白背景に合わせて調整 */
+        .stats { text-align: left; background: #f9f9f9; padding: 15px; border: 1px dashed var(--primary); font-size: 0.85rem; color: #333; line-height: 1.6; box-sizing: border-box; }
         .cheat-badge { background: linear-gradient(45deg, #ff0000, #ffeb3b); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-right: 5px; box-shadow: 0 0 5px var(--gold); }
         
-        footer { margin-top: 30px; color: #666; font-size: 0.75rem; text-align: center; width: 100%; }
+        /* ★フッター：外側の紺背景にあるので、文字色は白のまま、薄く */
+        footer { margin-top: 30px; color: #aaa; font-size: 0.75rem; text-align: center; width: 100%; }
         
         .btn-call { background: #28a745 !important; color: #fff !important; text-align: center !important; margin-top: 15px; }
         .btn-back-cheat { background: #555 !important; color: #fff !important; text-align: center !important; margin-top: 10px; font-size: 0.8rem; padding: 10px; }
@@ -83,41 +91,41 @@
 <div id="game-box">
     <div id="title-screen">
         <img src="logo.png" class="logo-img" alt="M男転生 ロゴ">
-        <p style="color: #aaa; font-size: 0.8rem;">～女神様、M男枠しか空いてないって本当ですか？～</p>
+        <p style="color: #666; font-size: 0.8rem;">～女神様、M男枠しか空いてないって本当ですか？～</p>
         <button onclick="goToNameInput()" style="text-align:center;">異世界へ転生する</button>
     </div>
 
     <div id="name-input-screen" class="hidden">
-        <h3 style="color: var(--gold);">転生前の名前を教えて？</h3>
+        <h3 style="color: var(--primary);">転生前の名前を教えて？</h3>
         <input type="text" id="user-name" placeholder="名前を入力..." maxlength="15">
         <button onclick="startNovel()" style="text-align:center;">この名前で転生を開始</button>
     </div>
 
     <div id="novel-screen" class="hidden">
-        <div id="novel-text" style="min-height:150px; display:flex; align-items:center; justify-content:center; line-height:1.8; padding: 0 10px;"></div>
+        <div id="novel-text" style="min-height:150px; display:flex; align-items:center; justify-content:center; line-height:1.8; padding: 0 10px; color: #000;"></div>
         <button onclick="nextNovel()" id="btn-next" style="width:auto; padding:10px 80px; margin-top:20px; text-align:center;">次へ</button>
     </div>
 
     <div id="goddess-wrap" class="goddess-content">
-        <div style="background: #fff; padding: 15px; border-radius: 8px;">
+        <div style="background: #ccc; padding: 15px; border-radius: 8px;">
             <img src="megami.jpg" class="goddess-img" alt="女神画像">
             <div id="goddess-comment" class="msg-bubble" onclick="handleGoddessClick()"></div>
         </div>
 
         <div id="quiz" class="hidden" style="margin-top: 20px;">
-            <div id="q-num" style="color:var(--gold); font-size:0.8rem; margin-bottom:10px; font-weight:bold;"></div>
-            <div id="q-text" style="margin-bottom: 20px; font-weight: bold; font-size: 1rem; text-align:left;"></div>
+            <div id="q-num" style="color:var(--primary); font-size:0.8rem; margin-bottom:10px; font-weight:bold;"></div>
+            <div id="q-text" style="margin-bottom: 20px; font-weight: bold; font-size: 1rem; text-align:left; color: #000;"></div>
             <div class="choices" id="choices"></div>
         </div>
 
         <div id="cheat-menu" class="hidden" style="margin-top: 20px;">
-            <p style="color:var(--gold); font-weight:bold; font-size:0.8rem;">―― 禁断の職業選択 ――</p>
+            <p style="color:var(--primary); font-weight:bold; font-size:0.8rem;">―― 禁断の職業選択 ――</p>
             <div class="choices" id="cheat-choices"></div>
         </div>
     </div>
 
     <div id="result" class="hidden">
-        <div style="font-weight:bold; font-size:0.9rem;">鑑定結果：<span id="res-name-label"></span>のジョブは…</div>
+        <div style="font-weight:bold; font-size:0.9rem; color: #000;">鑑定結果：<span id="res-name-label"></span>のジョブは…</div>
         <div class="job-res" id="job-name"></div>
         <div class="stats" id="detail"></div>
         
@@ -147,7 +155,7 @@
         alchemist: { n: "貢ぎ変態錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "私利私欲のために錬金し、それを全て女勇者に貢ぐダメ人間ね。アンタなんか勇者に尽くして破産してしまえばいいわ！" },
         dog: { n: "勇者のペット（犬）", s: "お手・おかわり", i: "トゲ付きの首輪", o: "Mセット", c: "人間をやめて犬として生きる道を選んだのね。四つん這いで這いつくばりなさい！" },
         floor: { n: "高機能な床", s: "踏まれ心地の追求", i: "高級なワックス", o: "踏みつけ", c: "もはや生物ですらないわ。女勇者に踏まれるためだけの「床」がお似合いよ。" },
-        knight: { n: "屈辱の騎士", s: "プライド崩壊", i: "ボロボロの家紋旗", o: "顔面騎乗", c: "高潔な騎士が女勇者に完敗して跪く……そのギャップがたまらないんでしょ？" },
+        knight: { n: "屈辱の騎士", s: "プライド崩壊", i: "ボロボロ de 家紋旗", o: "顔面騎乗", c: "高潔な騎士が女勇者に完敗して跪く……そのギャップがたまらないんでしょ？" },
         mage: { n: "絶望の魔法使い", s: "魔力搾取(快感)", i: "童貞の証（賢者の杖）", o: "匂いかぎ、魔力抽出", c: "童貞を極めて魔法が使えるようになったのに、結局女勇者に魔力を搾り取られるだけの存在ね。一生彼女の魔力タンクとして尽くしなさい。" },
         slime: { n: "ドMスライム", s: "全身粘液、核(コア)露出", i: "勇者の靴磨きセット", o: "指アナル（前立腺刺激）", c: "物理的な痛みには鈍感だけど、体内の『核（コア）』を直接いじられると、抗えない快感に溶けちゃうのね。女勇者に指先でかき回されるのが一番の幸せなんでしょ？" },
         shield: { n: "人間盾", s: "ダメージ全吸収", i: "ボロボロ de 鉄板", o: "拘束、乳首舐め", c: "攻撃を避けるなんて言語道断。すべての苦痛を正面から受け止めるのがアンタの運命よ。" },
@@ -160,7 +168,7 @@
         { q: "女勇者が「新しい毒薬の実験台が必要だ」と言い出しました。", a: [{t: "「もっと強いのを！」と飲み干す", j: "alchemist"}, {t: "「これも騎士の修行……」と飲む", j: "knight"}, {t: "身体が溶けて彼女の足元に広がる", j: "slime"}, {t: "鎖で繋がれたまま拒否せず飲む", j: "slave"}]},
         { q: "敵の強力な魔法が放たれました。あなたの「理想」の守り方は？", a: [{t: "鉄板のように硬直して衝撃をゼロにする", j: "shield"}, {t: "尊厳を吸い取られながら障壁を張る", j: "mage"}, {t: "盾になって踏みつけられる", j: "floor"}, {t: "彼女の前に跪いて直に受ける", j: "slave"}]},
         { q: "街の人々に、彼女の「所有物」として紹介された時の気分は？", a: [{t: "「自分はただの番号だ」と復唱する", j: "slave"}, {t: "首輪を引かれて悦に浸る", j: "dog"}, {t: "部下に目撃され、絶望しながら従う", j: "knight"}, {t: "自慢の「魔力タンク」として胸を張る", j: "mage"}]},
-        { q: "女勇者に一生外れない「鉄枷（てつかせ）」をはめられることに。", a: [{t: "「重い……最高だ……」と涙を流す", j: "slave"}, {t: "「これでずっと一緒ですね」と喜ぶ", j: "dog"}, {t: "より食い込むまで締め付けられるのを待つ", j: "shield"}, {t: "枷をはめられたまま床として機能する", j: "floor"}]},
+        { q: "勇者に一生外れない「鉄枷（てつかせ）」をはめられることに。", a: [{t: "「重い……最高だ……」と涙を流す", j: "slave"}, {t: "「これでずっと一緒ですね」と喜ぶ", j: "dog"}, {t: "より食い込むまで締め付けられるのを待つ", j: "shield"}, {t: "枷をはめられたまま床として機能する", j: "floor"}]},
         { q: "戦いの後、彼女の靴が泥で汚れています。どうしますか？", a: [{t: "スライムになり核(コア)を刺激されるのを待つ", j: "slime"}, {t: "床として横たわり汚れを落とさせる", j: "floor"}, {t: "「私が磨きます」と薬液で洗浄する", j: "alchemist"}, {t: "犬のように這いつくばり許可を待つ", j: "dog"}]},
         { q: "あなたが「道具」として扱われる際、最も快感なのは？", a: [{t: "「代わりはいくらでもいる」と言われる", j: "slime"}, {t: "「便利なゴミ箱」と言われる", j: "shield"}, {t: "「壊れるまで使ってやる」と言われる", j: "slave"}, {t: "何時間も無言で放置される瞬間", j: "floor"}]},
         { q: "女勇者の魔力が枯渇しました。救済のために捧げるのは？", a: [{t: "童貞の魔力をすべて吸い取らせる", j: "mage"}, {t: "自分の生命力すら魔力に変える", j: "slave"}, {t: "黙って足首を掴み魔力を流し込む", j: "knight"}, {t: "魔力回復薬を自作し、副作用を受ける", j: "alchemist"}]},
