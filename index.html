@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>M男転生 ～女神様、M男枠しか空いてないって本当ですか？～</title>
+    <title>M男転生 ～全知全能のドM、異世界で女勇者の「専用装備」になる～</title>
     <style>
         :root { --primary: #9d50bb; --bg: #0f0c29; --text: #ffffff; --gold: #ffeb3b; }
         
@@ -23,12 +23,11 @@
             padding: 20px 0;
         }
 
-        /* ★ここを修正：ロゴを見やすくするため、ボックス内を白にする */
         #game-box { 
             width: 90%; 
             max-width: 480px; 
-            background: #ffffff; /* 濃い紺色から白に変更 */
-            color: #000000;      /* ボックス内の基本文字色を黒に */
+            background: #ffffff; 
+            color: #000000;      
             padding: 25px; 
             border: 4px solid var(--primary); 
             text-align: center; 
@@ -45,8 +44,19 @@
 
         .logo-img { width: 100%; max-width: 320px; margin-bottom: 25px; height: auto; }
         
-        /* ★女神画像の下の吹き出し：白背景の中で白だと見えないので調整 */
-        .msg-bubble { background: #f0f0f0; color: #000; padding: 20px; border-radius: 12px; margin-top: 25px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem; line-height: 1.6; position: relative; cursor: pointer; border: 3px solid var(--primary); text-align: left; box-sizing: border-box; }
+        /* ★女神画像のサイズ調整：大きすぎないように最大幅を設定 */
+        .goddess-img { 
+            width: 100%; 
+            max-width: 200px; /* ここを調整：以前よりかなり小さくしました */
+            height: auto; 
+            border: 2px solid var(--primary); 
+            background: #eee; 
+            display: block; 
+            margin: 0 auto; 
+            border-radius: 8px; 
+        }
+        
+        .msg-bubble { background: #f0f0f0; color: #000; padding: 20px; border-radius: 12px; margin-top: 15px; margin-bottom: 20px; font-weight: bold; font-size: 0.9rem; line-height: 1.6; position: relative; cursor: pointer; border: 3px solid var(--primary); text-align: left; box-sizing: border-box; }
         .msg-bubble::after { content: "▼ CLICK"; position: absolute; bottom: 5px; right: 15px; font-size: 0.6rem; color: #9d50bb; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
@@ -56,7 +66,6 @@
         #user-name { padding: 12px; width: 100%; max-width: 300px; margin-bottom: 20px; border-radius: 5px; border: 2px solid var(--primary); text-align: center; font-size: 1rem; background: #fff; color: #000; box-sizing: border-box; }
         .choices { display: grid; gap: 10px; width: 100%; }
 
-        /* ボタン：白背景に合わせてデザインを調整 */
         button { 
             background: #eee; border: 2px solid #ccc; padding: 15px; font-weight: bold; cursor: pointer; box-shadow: 4px 4px 0px #666; font-size: 0.95rem; color: #000; transition: 0.1s; width: 100%; text-align: left; -webkit-tap-highlight-color: transparent; box-sizing: border-box;
             touch-action: manipulation;
@@ -70,14 +79,11 @@
 
         .hidden { display: none !important; }
         
-        /* 職業結果名：白背景に合わせて影を薄く */
         .job-res { font-size: 1.6rem; color: var(--primary); text-shadow: 1px 1px #ccc; margin: 10px 0; font-weight: bold; word-wrap: break-word; }
         
-        /* ステータス：白背景に合わせて調整 */
         .stats { text-align: left; background: #f9f9f9; padding: 15px; border: 1px dashed var(--primary); font-size: 0.85rem; color: #333; line-height: 1.6; box-sizing: border-box; }
         .cheat-badge { background: linear-gradient(45deg, #ff0000, #ffeb3b); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-right: 5px; box-shadow: 0 0 5px var(--gold); }
         
-        /* ★フッター：外側の紺背景にあるので、文字色は白のまま、薄く */
         footer { margin-top: 30px; color: #aaa; font-size: 0.75rem; text-align: center; width: 100%; }
         
         .btn-call { background: #28a745 !important; color: #fff !important; text-align: center !important; margin-top: 15px; }
@@ -91,7 +97,6 @@
 <div id="game-box">
     <div id="title-screen">
         <img src="logo.png" class="logo-img" alt="M男転生 ロゴ">
-        <p style="color: #666; font-size: 0.8rem;">～女神様、M男枠しか空いてないって本当ですか？～</p>
         <button onclick="goToNameInput()" style="text-align:center;">異世界へ転生する</button>
     </div>
 
@@ -107,7 +112,7 @@
     </div>
 
     <div id="goddess-wrap" class="goddess-content">
-        <div style="background: #ccc; padding: 15px; border-radius: 8px;">
+        <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
             <img src="megami.jpg" class="goddess-img" alt="女神画像">
             <div id="goddess-comment" class="msg-bubble" onclick="handleGoddessClick()"></div>
         </div>
