@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>M男転生 ～全知全能のドM、異世界で女勇者の「専用装備」になる～</title>
+    <title>M男転生 ～女神様、M男枠しか空いてないって本当ですか？～</title>
     <style>
         :root { --primary: #9d50bb; --bg: #0f0c29; --text: #ffffff; --gold: #ffeb3b; }
         
@@ -44,10 +44,9 @@
 
         .logo-img { width: 100%; max-width: 320px; margin-bottom: 25px; height: auto; }
         
-        /* ★女神画像のサイズ調整：大きすぎないように最大幅を設定 */
         .goddess-img { 
             width: 100%; 
-            max-width: 200px; /* ここを調整：以前よりかなり小さくしました */
+            max-width: 200px; 
             height: auto; 
             border: 2px solid var(--primary); 
             background: #eee; 
@@ -224,9 +223,10 @@
             goddessWrap.classList.add('goddess-visible');
             
             if (isCheat) {
-                commentBox.innerText = `！？！？さてはアンタ、いえ、貴方様は全知全能のドM様・・・！！すぐ全職業を解放させていただきます！！！`;
+                commentBox.innerText = `！？！？さてはアンタ、いえ、貴方様は全知全能のドM様・・・！！すぐ全職業を解放させていただきます！！！ さぁ、お好みの「悦びの器」をお選びくださいませ、マスター！`;
             } else {
-                commentBox.innerText = `アンタはMの素質を見抜かれて転生者に選ばれたの。診断を始めましょう。`;
+                // ★以前の俗っぽいセリフを復活
+                commentBox.innerText = `ひどい事故だったわね、${userName}。ここにいるということはアンタはMの素質を見抜かれて、転生者に選ばれたのね。最近地球で人気な異世界転生モノ？のせいで転生者が絶えないからM男に転生してもらうわ。さぁ診断を始めましょう。`;
             }
             commentBox.classList.remove('hidden');
 
