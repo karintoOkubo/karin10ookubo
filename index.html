@@ -34,6 +34,7 @@
             box-shadow: 10px 10px 0px #000; 
             position: relative;
             box-sizing: border-box;
+            margin-bottom: 20px;
         }
         
         #white-out { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: none; opacity: 0; transition: opacity 0.8s; pointer-events: none; }
@@ -83,7 +84,55 @@
         .stats { text-align: left; background: #f9f9f9; padding: 15px; border: 1px dashed var(--primary); font-size: 0.85rem; color: #333; line-height: 1.6; box-sizing: border-box; }
         .cheat-badge { background: linear-gradient(45deg, #ff0000, #ffeb3b); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-right: 5px; box-shadow: 0 0 5px var(--gold); }
         
-        footer { margin-top: 30px; color: #aaa; font-size: 0.75rem; text-align: center; width: 100%; }
+        /* 新設：紹介文・メニュー用CSS */
+        .intro-container {
+            width: 90%;
+            max-width: 480px;
+            background: #fff;
+            color: #333;
+            text-align: left;
+            padding: 20px;
+            border: 4px solid var(--primary);
+            box-shadow: 10px 10px 0px #000;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            box-sizing: border-box;
+        }
+
+        .intro-title {
+            color: var(--primary);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .job-card {
+            background: #fdfbff;
+            border: 1px solid #ddd;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 12px;
+            padding: 10px;
+        }
+
+        .job-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #ccc;
+            margin-bottom: 5px;
+            padding-bottom: 3px;
+        }
+
+        .job-card-name { font-weight: bold; color: #000; font-size: 0.95rem; }
+        .job-card-price { background: var(--primary); color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; }
+        .job-card-content { font-size: 0.85rem; color: #555; margin-bottom: 3px; }
+        .job-card-benefit { color: #d32f2f; font-weight: bold; font-size: 0.8rem; }
+
+        footer { margin-top: 30px; color: #aaa; font-size: 0.75rem; text-align: center; width: 100%; padding-bottom: 20px; }
         
         .btn-call { background: #28a745 !important; color: #fff !important; text-align: center !important; margin-top: 15px; }
         .btn-back-cheat { background: #555 !important; color: #fff !important; text-align: center !important; margin-top: 10px; font-size: 0.8rem; padding: 10px; }
@@ -134,12 +183,73 @@
         <div class="stats" id="detail"></div>
         
         <button class="btn-call" onclick="location.href='tel:03-5338-2227'">📞 お店に電話して予約する</button>
-
         <button id="btn-back-cheat" class="btn-back-cheat hidden" onclick="backToCheatMenu()">← 他の職業も見てみる</button>
-
         <button id="btn-share" style="background:#000; color:#fff; margin-top:15px; text-align:center;">結果をXで報告</button>
         <button onclick="location.reload()" style="margin-top:10px; background:#999; text-align:center;">タイトルへ</button>
     </div>
+</div>
+
+<div class="intro-container">
+    <div class="intro-title">異世界転生、はじめました。</div>
+    <p style="font-size: 0.85rem; margin-bottom: 20px;">
+        不慮の事故で命を落としたあなた。女神に告げられた衝撃の事実は「M男枠しか空いてない」ということだった……。
+        さあ、アンタも診断に答え、自分だけの「屈辱のジョブ」を授かりに来なさい。
+    </p>
+
+    <div class="intro-title">🔱 異世界ジョブ・メニュー 🔱</div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">1. 貢ぎ変態錬金術師</span><span class="job-card-price">6,000円</span></div>
+        <div class="job-card-content">私利私欲の限りを尽くし、勇者に全財産を貢ぎ破産せよ。</div>
+        <div class="job-card-benefit">【内容】ハッピーセット</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">2. 勇者専用回復飴（スイーツ）</span><span class="job-card-price">6,000円</span></div>
+        <div class="job-card-content">勇者の口内で転がされ、一滴残らず味わい尽くされる甘美な刑。</div>
+        <div class="job-card-benefit">【内容】乳舐め、全身愛撫</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">3. 勇者のペット（犬）</span><span class="job-card-price">6,000円</span></div>
+        <div class="job-card-content">人間を捨て、四つん這いで這いつくばる獣の喜び。</div>
+        <div class="job-card-benefit">【内容】Mセット</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">4. 高機能な床</span><span class="job-card-price">5,000円</span></div>
+        <div class="job-card-content">生物であることを辞め、ただ勇者に踏まれるためだけのオブジェへ。</div>
+        <div class="job-card-benefit">【内容】踏みつけ</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">5. 屈辱の騎士</span><span class="job-card-price">6,000円</span></div>
+        <div class="job-card-content">高潔なプライドが崩壊し、絶対強者の下敷きになる悦び。</div>
+        <div class="job-card-benefit">【内容】顔面騎乗</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">6. 絶望の魔法使い</span><span class="job-card-price">5,000円</span></div>
+        <div class="job-card-content">勇者の残り香を嗅ぐことしか許されない、哀れな魔導師。</div>
+        <div class="job-card-benefit">【内容】匂いかぎ</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">7. ドMスライム</span><span class="job-card-price">5,500円</span></div>
+        <div class="job-card-content">核（コア）を直接かき回されれば、即座に融解する軟体生物。</div>
+        <div class="job-card-benefit">【内容】指アナル</div>
+    </div>
+
+    <div class="job-card">
+        <div class="job-card-header"><span class="job-card-name">8. 終身刑の奴隷</span><span class="job-card-price">5,000円</span></div>
+        <div class="job-card-content">名前を奪われ、鎖に繋がれたまま一生を捧げる。</div>
+        <div class="job-card-benefit">【内容】ビンタ、蹴り、目隠し、拘束</div>
+    </div>
+
+    <p style="text-align: center; font-weight: bold; margin-top: 20px; font-size: 0.8rem;">
+        もちろんオプション追加も可能！<br>
+        診断結果をXでポストして転生しよう！！
+    </p>
 </div>
 
 <footer>
@@ -159,7 +269,7 @@
 
     const jobs = {
         alchemist: { n: "貢ぎ変態錬金術師", s: "劇薬耐性(快感)", i: "怪しい薬の試験管", o: "ハッピーセット", c: "私利私欲のために錬金し、それを全て女勇者に貢ぐダメ人間ね。アンタなんか勇者に尽くして破産してしまえばいいわ！" },
-        candy: { n: "献上体力回復飴（スイーツ）", s: "体力・魔力の譲渡", i: "全身に塗られた蜂蜜", o: "乳首舐め、全身愛撫", c: "アンタ、勇者の口の中で転がされるのがそんなに嬉しいの？ じっとしてなさい、一滴残らず溶かして味わい尽くしてアゲルわ。" },
+        candy: { n: "勇者専用回復飴（スイーツ）", s: "体力・魔力の譲渡", i: "全身に塗られた蜂蜜", o: "乳首舐め、全身愛撫", c: "アンタ、勇者の口の中で転がされるのがそんなに嬉しいの？ じっとしてなさい、一滴残らず溶かして味わい尽くしてアゲルわ。" },
         dog: { n: "勇者のペット（犬）", s: "お手・おかわり", i: "トゲ付きの首輪", o: "Mセット", c: "人間をやめて犬として生きる道を選んだのね。四つん這いで這いつくばりなさい！" },
         floor: { n: "高機能な床", s: "踏まれ心地の追求", i: "高級なワックス", o: "踏みつけ", c: "もはや生物ですらないわ。女勇者に踏まれるためだけの「床」がお似合いよ。" },
         knight: { n: "屈辱の騎士", s: "プライド崩壊", i: "ボロボロ de 家紋旗", o: "顔面騎乗", c: "高潔な騎士が女勇者に完敗して跪く……そのギャップがたまらないんでしょ？" },
@@ -289,11 +399,8 @@
         document.getElementById('goddess-comment').classList.remove('no-click');
     }
 
-    // ★修正：JSON形式で送信する処理
     function sendToSheet(name, job) {
         if(!scriptURL) return;
-        
-        // GAS側の JSON.parse(e.postData.contents) に対応させる
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
@@ -313,7 +420,6 @@
         let maxJob = cheatKey || Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
         const job = jobs[maxJob];
         
-        // ★実行
         sendToSheet(userName, job.n);
         
         document.getElementById('res-name-label').innerHTML = (isCheat ? '<span class="cheat-badge">全知全能のドM</span>' : '') + userName;
